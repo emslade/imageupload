@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Image Upload</title>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+    <script type="text/javascript" src="../../utils/mctabs.js"></script>
+	<script type="text/javascript" src="/src/tinymceapp/jquery.min.js"></script>
+	<script type="text/javascript" src="js/dialog.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+
+<div class="tabs">
+    <ul>
+        <li id="insert_tab" class="current"><span><a href="javascript:mcTabs.displayTab('insert_tab','insert_panel');" onmousedown="return false;">Insert</a></span></li>
+        <li id="upload_tab"><span><a href="javascript:mcTabs.displayTab('upload_tab','upload_panel');" onmousedown="return false;">Upload</a></span></li>
+    </ul>
+</div>
+
+<div class="panel_wrapper">
+    <div id="insert_panel" class="panel current">
+        <form onsubmit="ImageUploadDialog.insert();return false;" action="#">
+            <a href="#" class="refresh-browser"></a>
+            <p>Image browser: </p>
+            <ul id="browser">
+            </ul>
+            <div class="mceActionPanel">
+                <input type="button" id="insert" name="insert" value="Insert Image" onclick="ImageUploadDialog.insert();" />
+                <input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+            </div>
+        </form>
+    </div>
+    <div id="upload_panel" class="panel">
+        <iframe width="300" height="200" frameBorder="0" scrolling="no" marginheight="10" marginwidth="10"></iframe>
+    </div>
+</div>
+
+</body>
+</html>
