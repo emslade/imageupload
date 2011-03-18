@@ -4,13 +4,13 @@ var ImageUploadDialog = {
     obj : null,
     stack: [],
     sel: null,
-	init : function() {
+    init : function() {
         this.loadFiles();
         $('iframe').attr('src', tinyMCE.activeEditor.getParam('imageupload_upload_url'));
-	},
-	insert : function() {
-		// Insert the contents from the input into the document
-		//tinyMCEPopup.editor.execCommand('mceInsertContent', false, document.forms[0].someval.value);
+    },
+    insert : function() {
+        // Insert the contents from the input into the document
+        //tinyMCEPopup.editor.execCommand('mceInsertContent', false, document.forms[0].someval.value);
 
         var ed = tinyMCEPopup.editor;
         args = {'src': tinyMCE.activeEditor.getParam('imageupload_image_dir') + ImageUploadDialog.imgsrc};
@@ -20,8 +20,8 @@ var ImageUploadDialog = {
         ed.dom.setAttrib('__mce_tmp', 'id', '');
         ed.undoManager.add();
 
-		//tinyMCEPopup.close();
-	},
+        //tinyMCEPopup.close();
+    },
     loadFiles: function() {
         var url = tinyMCE.activeEditor.getParam('imageupload_get_url');
         var self = this;
