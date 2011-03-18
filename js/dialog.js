@@ -61,26 +61,28 @@ var ImageUploadDialog = {
             o += '<li><a class="prev" href="#">..</a></li>';
         }
 
-        if (this.obj[dir].dirs) {
-            for (var i = 0; i < this.obj[dir].dirs.length; i++) {
-                var d = this.obj[dir].dirs[i];
-                var p = this.getPath();
+        if (this.obj[dir]) {
+            if (this.obj[dir].dirs) {
+                for (var i = 0; i < this.obj[dir].dirs.length; i++) {
+                    var d = this.obj[dir].dirs[i];
+                    var p = this.getPath();
 
-                if (p != '/') {
-                    p += '/';
-                }
+                    if (p != '/') {
+                        p += '/';
+                    }
 
-                if (this.obj[p + d]) {
-                    o += '<li><a class="dir" href="#">' + this.obj[dir].dirs[i] + '</a></li>';
-                } else {
-                    o += '<li class="empty">' + this.obj[dir].dirs[i] + '</li>';
+                    if (this.obj[p + d]) {
+                        o += '<li><a class="dir" href="#">' + this.obj[dir].dirs[i] + '</a></li>';
+                    } else {
+                        o += '<li class="empty">' + this.obj[dir].dirs[i] + '</li>';
+                    }
                 }
             }
-        }
 
-        if (this.obj[dir].files) {
-            for (var i = 0; i < this.obj[dir].files.length; i++) {
-                o += '<li><a class="file" href="#">' + this.obj[dir].files[i] + '</a></li>';
+            if (this.obj[dir].files) {
+                for (var i = 0; i < this.obj[dir].files.length; i++) {
+                    o += '<li><a class="file" href="#">' + this.obj[dir].files[i] + '</a></li>';
+                }
             }
         }
 
