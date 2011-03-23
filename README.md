@@ -5,6 +5,7 @@ Required configuration:
 * `imageupload_upload_url` - URL to load inside the iframe for file uploads
 * `imageupload_get_url` - URL to retrieve a JSON object of files and folders to browse
 * `imageupload_image_dir` - Path to prepend to image path on insertion into the editor
+* `imageupload_delete_url` - URL to delete an image. Should only accept POST requests and retrieve the POST parameter `path`
 
 Example JSON from `imageupload_get_url`:
 
@@ -17,6 +18,10 @@ This represents:
 	|   `-- image3.jpg
 	|-- image1.png
 	`-- image2.gif
+
+Example JSON from `imageupload_delete_url`:
+
+    {"success": false, "message": 'File deleted'}
 
 # Installation #
 
@@ -34,5 +39,6 @@ This represents:
         document_base_url : 'http://www.example.com/',
         imageupload_upload_url : 'http://www.example.com/upload_image',
         imageupload_get_url : 'http://www.example.com/get_uploaded_images',
-        imageupload_image_dir : '/images/uploaded'
+        imageupload_image_dir : '/images/uploaded',
+        imageupload_delete_url : 'http://www.example.com/delete_image'
 	});
