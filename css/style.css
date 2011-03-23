@@ -18,7 +18,9 @@ ul#browser a {
     text-decoration: none;
 }
 
-ul#browser a:hover {
+ul#browser a.dir:hover,
+ul#browser a.file:hover,
+ul#browser a.prev:hover {
     background-color: #eee;
 }
 
