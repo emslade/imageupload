@@ -142,6 +142,12 @@ var ImageUploadDialog = {
         });
 
         $('a.dir').each(function(key, item) {
+            if (self.getPath() == '/') {
+                var fullpath = self.getPath() + $(this).text();
+            } else {
+                var fullpath = self.getPath() + '/' + $(this).text();
+            }
+
             $(this).dblclick(function(e) {
                 dir = $(this).text();
                 self.stack.push(dir);
@@ -158,7 +164,7 @@ var ImageUploadDialog = {
             var a;
 
             $(this).mouseenter(function(e) {
-                a = $("<a></a>").attr('href', '#').addClass('delete-item').click(function(e) { self.remove(self.getPath() + $(item).text()); });
+                a = $("<a></a>").attr('href', '#').addClass('delete-item').click(function(e) { self.remove(fullpath); });
                 $(this).append(a);
             });
 
