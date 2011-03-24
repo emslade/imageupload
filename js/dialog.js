@@ -4,6 +4,7 @@ var ImageUploadDialog = {
     obj : null,
     stack: [],
     sel: null,
+    fileinfo : null,
     init : function() {
         this.loadFiles();
         $('iframe').attr('src', tinyMCE.activeEditor.getParam('imageupload_upload_url'));
@@ -54,7 +55,8 @@ var ImageUploadDialog = {
             url: url,
             success: function(json) {
                 self.stack = [];
-                self.obj = json;
+                self.obj = json.listing;
+                self.fileinfo = json.info;
                 self.stack.push('/');
                 self.listContents('/');
 
@@ -62,10 +64,12 @@ var ImageUploadDialog = {
                     self.loadFiles();
                     e.preventDefault();
                     e.stopPropagation();
+                    self.clearPreview();
                 });
 
                 $('#insert_tab').click(function(e) {
                     self.loadFiles();
+                    self.clearPreview();
                 });
             }
         });
@@ -127,6 +131,8 @@ var ImageUploadDialog = {
                 $(this).addClass('selected'); 
 
                 ImageUploadDialog.imgsrc = fullpath;
+                
+                self.preview(fullpath, $(this).text());
             });
 
             var a;
@@ -185,6 +191,49 @@ var ImageUploadDialog = {
         }
 
         return dir;
+    },
+    preview : function(path, filename) {
+        var url = tinyMCE.activeEditor.getParam('imageupload_preview_url');
+        var param = jQuery.param({image: path});
+        var preview_url = url + '?' + param;
+        var self = this;
+
+        $('#preview div').html($('<img>').attr('src', preview_url));
+        
+        if (filename.length > 20) {
+            filename = filename.substr(0,10) + '...' + filename.substr(filename.length - 10, filename.length);
+        }
+
+        $('#preview ul').html($('<li></li>').text(filename));
+
+        if (this.fileinfo[path]) {
+            var size = this.fileinfo[path].size;
+            
+            if (size < 1024) {
+                size = size + ' bytes'; 
+            } else {
+                size = Math.round(this.fileinfo[path].size / 1024) + ' kB';
+            }
+
+            $('#preview ul').append($('<li></li>').text(size)); 
+            $('#preview ul').append($('<li></li>').text(this.fileinfo[path].width + 'x' + this.fileinfo[path].height)); 
+
+            if ($('#insert-image').length == 0) {
+                $('#preview ul').after($('<a></a>').attr('href', '#').attr('id', 'insert-image').text('Insert'));
+                $('#preview a#insert-image').click(function() { self.insert(); });
+            }
+
+            if ($('#delete-image').length == 0) {
+                $('#preview a#insert-image').after($('<a></a>').attr('href', '#').attr('id', 'delete-image').text('Delete'));
+                $('#preview a#delete-image').click(function() { alert('DELETE'); });
+            }
+        }
+    },
+    clearPreview : function() {
+        $('#preview div').html('');
+        $('#preview ul').html('');
+        $('#insert-image').remove();
+        $('#delete-image').remove();
     }
 };
 

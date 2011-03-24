@@ -20,14 +20,18 @@
 <div class="panel_wrapper">
     <div id="insert_panel" class="panel current">
         <form onsubmit="ImageUploadDialog.insert();return false;" action="#">
-            <a href="#" class="refresh-browser"></a>
-            <p>Image browser: </p>
-            <ul id="browser">
+        <div id="preview">
+            <div></div>
+            <ul>
             </ul>
-            <div class="mceActionPanel">
-                <input type="button" id="insert" name="insert" value="Insert Image" onclick="ImageUploadDialog.insert();" />
-                <input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
-            </div>
+        </div>
+        <div>
+            <!--<a href="#" class="refresh-browser">Refresh</a>-->
+            <ul id="browser"></ul>
+        </div>
+        <div class="mceActionPanel" style="clear: both;">
+            <input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+        </div>
         </form>
     </div>
     <div id="upload_panel" class="panel">

@@ -26,7 +26,7 @@
 			ed.addCommand('mceImageUpload', function() {
 				ed.windowManager.open({
 					file : url + '/dialog.htm',
-					width : 420 + parseInt(ed.getLang('imageUpload.delta_width', 0)),
+					width : 600 + parseInt(ed.getLang('imageUpload.delta_width', 0)),
 					height : 320 + parseInt(ed.getLang('imageUpload.delta_height', 0)),
 					inline : 1
 				}, {
