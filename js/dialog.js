@@ -225,7 +225,10 @@ var ImageUploadDialog = {
 
             if ($('#delete-image').length == 0) {
                 $('#preview a#insert-image').after($('<a></a>').attr('href', '#').attr('id', 'delete-image').text('Delete'));
-                $('#preview a#delete-image').click(function() { alert('DELETE'); });
+                $('#preview a#delete-image').click(function() { self.remove(path);});
+            } else {
+                $('#preview a#delete-image').unbind('click');
+                $('#preview a#delete-image').click(function() { self.remove(path); self.clearPreview()});
             }
         }
     },
