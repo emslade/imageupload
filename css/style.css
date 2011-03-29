@@ -4,7 +4,6 @@ ul#browser {
     padding: 0;
     border: 1px solid #919B9C;
     height: 250px;
-    width: 300px;
     overflow: auto;
 }
 
@@ -50,7 +49,7 @@ ul#browser a.prev {
 }
 
 .panel_wrapper div.current {
-    height: 285px;
+    height: 252px;
 }
 
 ul#browser li a.empty {

@@ -26,8 +26,8 @@
 			ed.addCommand('mceImageUpload', function() {
 				ed.windowManager.open({
 					file : url + '/dialog.htm',
-					width : 520 + parseInt(ed.getLang('imageUpload.delta_width', 0)),
-					height : 350 + parseInt(ed.getLang('imageUpload.delta_height', 0)),
+					width : 500 + parseInt(ed.getLang('imageUpload.delta_width', 0)),
+					height : 307 + parseInt(ed.getLang('imageUpload.delta_height', 0)),
 					inline : 1
 				}, {
 					plugin_url : url // Plugin absolute URL
