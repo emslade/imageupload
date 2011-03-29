@@ -42,6 +42,7 @@ var ImageUploadDialog = {
                         }
 
                         self.loadFiles();
+                        self.clearPreview();
                     }
                 });
             }
@@ -97,16 +98,16 @@ var ImageUploadDialog = {
                     }
 
                     if (this.obj[p + d]) {
-                        o += '<li><a class="dir" href="#">' + this.obj[dir].dirs[i] + '</a></li>';
+                        o += '<li><a href="#" class="trash"></a><a class="dir" href="#">' + this.obj[dir].dirs[i] + '</a></li>';
                     } else {
-                        o += '<li><a class="dir empty" href="#">' + this.obj[dir].dirs[i] + '</a></li>';
+                        o += '<li><a href="#" class="trash"></a><a class="dir empty" href="#">' + this.obj[dir].dirs[i] + '</a></li>';
                     }
                 }
             }
 
             if (this.obj[dir].files) {
                 for (var i = 0; i < this.obj[dir].files.length; i++) {
-                    o += '<li><a class="file" href="#">' + this.obj[dir].files[i] + '</a></li>';
+                    o += '<li><a href="#" class="trash"></a><a class="file" href="#">' + this.obj[dir].files[i] + '</a></li>';
                 }
             }
         }
@@ -120,7 +121,7 @@ var ImageUploadDialog = {
 
         $('a.file').each(function(key, item) {
             if (self.getPath() == '/') {
-                var fullpath = self.getPath() + $(this).text();
+               var fullpath = self.getPath() + $(this).text();
             } else {
                 var fullpath = self.getPath() + '/' + $(this).text();
             }
@@ -133,17 +134,6 @@ var ImageUploadDialog = {
                 ImageUploadDialog.imgsrc = fullpath;
                 
                 self.preview(fullpath, $(this).text());
-            });
-
-            var a;
-
-            $(this).mouseenter(function(e) {
-                a = $("<a></a>").attr('href', '#').addClass('delete-item').click(function(e) { self.remove(fullpath) });
-                $(this).append(a);
-            });
-
-            $(this).mouseleave(function(e) {
-                $(a).remove();
             });
         });
 
@@ -166,16 +156,19 @@ var ImageUploadDialog = {
                     self.stack.pop()
                 }
             });
+        });
 
-            var a;
+        $('a.trash').each(function(key, item) {
+            $(this).click(function(e) {
+                var a = $(item).next();
 
-            $(this).mouseenter(function(e) {
-                a = $("<a></a>").attr('href', '#').addClass('delete-item').click(function(e) { self.remove(fullpath); });
-                $(this).append(a);
-            });
-
-            $(this).mouseleave(function(e) {
-                $(a).remove();
+                if (self.getPath() == '/') {
+                    var fullpath = self.getPath() + $(a).text();
+                } else {
+                    var fullpath = self.getPath() + '/' + $(a).text();
+                }
+                
+                self.remove(fullpath);
             });
         });
     },
@@ -219,16 +212,8 @@ var ImageUploadDialog = {
             $('#preview ul').append($('<li></li>').text(this.fileinfo[path].width + 'x' + this.fileinfo[path].height)); 
 
             if ($('#insert-image').length == 0) {
-                $('#preview ul').after($('<a></a>').attr('href', '#').attr('id', 'insert-image').text('Insert'));
+                $('#preview div').after($('<a></a>').attr('href', '#').attr('id', 'insert-image').text('Insert'));
                 $('#preview a#insert-image').click(function() { self.insert(); });
-            }
-
-            if ($('#delete-image').length == 0) {
-                $('#preview a#insert-image').after($('<a></a>').attr('href', '#').attr('id', 'delete-image').text('Delete'));
-                $('#preview a#delete-image').click(function() { self.remove(path);});
-            } else {
-                $('#preview a#delete-image').unbind('click');
-                $('#preview a#delete-image').click(function() { self.remove(path); self.clearPreview()});
             }
         }
     },

@@ -61,16 +61,6 @@ ul#browser li a.empty {
     background-position: 3px 3px;
 }
 
-ul#browser a.delete-item {
-    float: right;
-    padding: 0px;
-    background-image: url('../img/delete.png');
-    background-repeat: no-repeat;
-    background-position: 3px 0px;
-    width: 20px;
-    height: 20px;
-}
-
 iframe { border: 0; }
 
 a.refresh-browser {
@@ -117,4 +107,42 @@ div.mceActionPanel {
 
 div#preview a {
     display: block;
+}
+
+ul#browser a.trash {
+    float: right;
+    width: 23px;
+    height: 23px;
+    padding: 0px;
+    background-image: url('../img/cross_bw.png');
+    background-repeat: no-repeat;
+    background-position: 3px 2px;
+    background-color: white;
+}
+
+ul#browser a.trash:hover {
+    background-image: url('../img/cross.png');
+    background-repeat: no-repeat;
+    background-position: 3px 2px;
+    background-color: white;
+}
+
+a#insert-image {
+    background-image: url('../img/add.png');
+    background-repeat: no-repeat;
+    background-position: 3px 4px;
+    padding-left: 25px;
+    height: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #919B9C;
+    padding-top: 5px;
+    width: 125px;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #eee;
+}
+
+a#insert-image:hover {
+    background-color: #eee;
 }
