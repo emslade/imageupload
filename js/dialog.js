@@ -8,6 +8,13 @@ var ImageUploadDialog = {
     init : function() {
         this.loadFiles();
         $('iframe').attr('src', tinyMCE.activeEditor.getParam('imageupload_upload_url'));
+
+        var self = this;
+
+        $('#insert_tab').click(function(e) {
+            self.loadFiles();
+            self.clearPreview();
+        });
     },
     insert : function() {
         // Insert the contents from the input into the document
@@ -61,17 +68,6 @@ var ImageUploadDialog = {
                 self.stack.push('/');
                 self.listContents('/');
 
-                $('a.refresh-browser').click(function(e) {
-                    self.loadFiles();
-                    e.preventDefault();
-                    e.stopPropagation();
-                    self.clearPreview();
-                });
-
-                $('#insert_tab').click(function(e) {
-                    self.loadFiles();
-                    self.clearPreview();
-                });
             }
         });
     },
