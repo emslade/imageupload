@@ -8,6 +8,7 @@ function uploadFile() {
     xhr.upload.addEventListener("progress", uploadProgress, false);
     xhr.addEventListener('error', uploadFailed, false);
     xhr.addEventListener('readystatechange', foo, false);
+    xhr.addEventListener('load', uploadComplete, false);
     xhr.open('POST', tinyMCE.activeEditor.getParam('imageupload_upload_url'));
     xhr.send(fd);
 
@@ -23,7 +24,7 @@ function uploadProgress(evt)
     //console.log(evt);
     if (evt.lengthComputable) {
         var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-        $('#upload-progress').text(percentComplete.toString());
+        $('#upload-progress').text(percentComplete.toString() + '%');
         console.log(percentComplete);
     } else {
     }
@@ -31,7 +32,7 @@ function uploadProgress(evt)
 }
 
 function uploadComplete(evt) {
-    //console.log(evt);
+    $('#upload-progress').text('100%');
 }
 
 function uploadFailed(evt) {
