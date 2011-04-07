@@ -32,14 +32,13 @@
         </form>
     </div>
     <div id="upload_panel" class="panel">
-        <iframe width="300" height="200" frameBorder="0" scrolling="no" marginheight="10" marginwidth="10"></iframe>
-
-        <form enctype="multipart/form-data" method="post" action="http://172.26.12.183/src/dynamicupdate2/branches/remove_ibrowser/src/admin/module/Page/upload_image">
-            <input type="file" name="fileToUpload" id="fileToUpload" />
+        <form id="upload_form" enctype="multipart/form-data" method="post" action="http://172.26.12.183/src/dynamicupdate2/branches/remove_ibrowser/src/admin/module/Page/upload_image">
+            <input type="file" name="userfile" id="fileToUpload" />
             <input type="button" onclick="uploadFile()" value="Upload" />
         </form>
 
         <div id="upload-progress"></div>
+        <div id="upload_message"></div>
     </div>
 </div>
 

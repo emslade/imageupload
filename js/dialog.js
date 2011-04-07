@@ -7,7 +7,7 @@ var ImageUploadDialog = {
     fileinfo : null,
     init : function() {
         this.loadFiles();
-        $('iframe').attr('src', tinyMCE.activeEditor.getParam('imageupload_upload_url'));
+        //$('iframe').attr('src', tinyMCE.activeEditor.getParam('imageupload_upload_url'));
 
         var self = this;
 
