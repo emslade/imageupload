@@ -1,31 +1,34 @@
 function uploadFile() {
+    var xhr_upload = false;
+
     if (window.XMLHttpRequest) {
         var xhr = new XMLHttpRequest();
         
         if (xhr.upload) {
-            var fd = new FormData();
-            fd.append("userfile", document.getElementById('fileToUpload').files[0]);
+            xhr_upload = true;
+        }
+    }
 
-            xhr.upload.addEventListener("progress", uploadProgress, false);
-            xhr.addEventListener('error', uploadFailed, false);
-            xhr.addEventListener('readystatechange', foo, false);
-            xhr.addEventListener('load', uploadComplete, false);
-            xhr.open('POST', tinyMCE.activeEditor.getParam('imageupload_upload_url'));
-            xhr.send(fd);
+    if (xhr_upload) {
+        var fd = new FormData();
+        fd.append("userfile", document.getElementById('fileToUpload').files[0]);
 
-            function foo(evt) {
-                if (xhr.readyState == 4) {
-                    console.log(xhr.responseText);
-
-                    obj = jQuery.parseJSON(xhr.responseText);
-                    alert(obj.message);
-                }
+        function foo(evt) {
+            if (xhr.readyState == 4) {
+                obj = jQuery.parseJSON(xhr.responseText);
+                alert(obj.message);
             }
         }
+
+        xhr.upload.addEventListener("progress", uploadProgress, false);
+        xhr.addEventListener('error', uploadFailed, false);
+        xhr.addEventListener('readystatechange', foo, false);
+        xhr.addEventListener('load', uploadComplete, false);
+        xhr.open('POST', tinyMCE.activeEditor.getParam('imageupload_upload_url'));
+        xhr.send(fd);
     } else {
-        var iframe = $('<iframe></iframe>');
+        var iframe = $('<iframe name="upload_iframe"></iframe>');
         iframe.attr('id', 'upload_iframe');
-        iframe.attr('name', 'upload_iframe');
         iframe.css('display', 'none');
         $('#upload_form').after(iframe);
 
@@ -47,11 +50,9 @@ function uploadFile() {
 
 function uploadProgress(evt)
 {
-    //console.log(evt);
     if (evt.lengthComputable) {
         var percentComplete = Math.round(evt.loaded * 100 / evt.total);
         $('#upload-progress').text(percentComplete.toString() + '%');
-        console.log(percentComplete);
     } else {
     }
 
