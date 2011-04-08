@@ -16,7 +16,7 @@ function uploadFile() {
         function foo(evt) {
             if (xhr.readyState == 4) {
                 obj = jQuery.parseJSON(xhr.responseText);
-                alert(obj.message);
+                showMessage(obj.message, obj.success);
             }
         }
 
@@ -38,7 +38,7 @@ function uploadFile() {
             var text = $('iframe').contents().find('body').text();
             iframe.remove();
             var obj = jQuery.parseJSON(text);
-            alert(obj.message);
+            showMessage(obj.message, obj.success);
         });
 
         $('#upload_form').attr('target', 'upload_iframe');
@@ -63,9 +63,18 @@ function uploadComplete(evt) {
 }
 
 function uploadFailed(evt) {
-    alert('error');
+    showMessage('error', true);
 }
 
-function showMessage(message) 
+function showMessage(message, error) 
 {
+    if (!error) {
+        $('#upload_message').addClass('fail');
+        $('#upload_message').removeClass('success');
+    } else {
+        $('#upload_message').addClass('success');
+        $('#upload_message').removeClass('fail');
+    }
+
+    $('#upload_message').text(message);
 }

@@ -146,3 +146,18 @@ a#insert-image {
 a#insert-image:hover {
     background-color: #eee;
 }
+
+div#upload_message {
+    margin: 5px;
+    padding: 5px;
+}
+
+div.success {
+    border: 1px solid green;
+    color: green;
+}
+
+div.fail {
+    border: 1px solid red;
+    color: red;
+}
