@@ -1,8 +1,10 @@
-A simple image file browser plugin for TinyMCE. Inserts selected image into the editor. Files and directories to browse are retrieved via an Ajax GET request in JSON format.
+A simple image file browser and uploader plugin for TinyMCE. Inserts selected image into the editor. Files and directories to browse are retrieved via an Ajax GET request in JSON format. Created as an alternative to the iBrowser TinyMCE plugin.
+
+Tested in the following browsers: Google Chrome, FF4, FF3, IE6, IE8
 
 Required configuration:
 
-* `imageupload_upload_url` - URL to load inside the iframe for file uploads
+* `imageupload_upload_url` - URL to POST to with files to upload 
 * `imageupload_get_url` - URL to retrieve a JSON object of files and folders to browse
 * `imageupload_image_dir` - Path to prepend to image path on insertion into the editor
 * `imageupload_delete_url` - URL to delete an image. Should only accept POST requests and retrieve the POST parameter `path`
