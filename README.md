@@ -1,6 +1,8 @@
-# No longer maintained
+## No longer maintained
 
 If you're looking for a TinyMCE 4 compatible version, try https://github.com/boxuk/tinymce-imageupload.
+
+## Stuff
 
 A simple image file browser and uploader plugin for TinyMCE. Inserts selected image into the editor. Files and directories to browse are retrieved via an Ajax GET request in JSON format. Created as an alternative to the iBrowser TinyMCE plugin.
 
